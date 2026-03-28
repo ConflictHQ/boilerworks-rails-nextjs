@@ -13,7 +13,6 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@apollo/client": "^4.1.6",
     "@apollo/client-integration-nextjs": "^0.14.4",
     "@hookform/resolvers": "^5.2.2",
     "class-variance-authority": "^0.7.1",
@@ -34,9 +33,11 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@apollo/client": "^4.1.6",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
