@@ -1,0 +1,103 @@
+services:
+  api:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile.dev
+    container_name: boilerworks-rails-api
+    ports:
+      - "3001:3001"
+    volumes:
+      - ../backend:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      - DATABASE_URL=postgres://boilerworks:boilerworks@db:5432/boilerworks_development
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_ENV=development
+      - RAILS_LOG_TO_STDOUT=true
+      - FRONTEND_URL=http://localhost:3002
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3001/up || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
+  ui:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile.dev
+    container_name: boilerworks-rails-ui
+    ports:
+      - "3002:3002"
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    environment:
+      - NEXT_PUBLIC_API_ROOT=http://localhost:3001
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: boilerworks-rails-nextjs-db
+    ports:
+      - "5444:5432"
+    environment:
+      - POSTGRES_USER=boilerworks
+      - POSTGRES_PASSWORD=boilerworks
+      - POSTGRES_DB=boilerworks_development
+    volumes:
+      - rails_nextjs_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U boilerworks -d boilerworks_development"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: boilerworks-rails-nextjs-redis
+    ports:
+      - "6387:6379"
+    volumes:
+      - rails_nextjs_redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile.dev
+    container_name: boilerworks-rails-nextjs-worker
+    command: bundle exec rake solid_queue:start
+    volumes:
+      - ../backend:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      - DATABASE_URL=postgres://boilerworks:boilerworks@db:5432/boilerworks_development
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_ENV=development
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  rails_nextjs_db:
+  rails_nextjs_redis:
+  bundle_cache:

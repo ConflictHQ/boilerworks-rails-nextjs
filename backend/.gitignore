@@ -1,0 +1,11 @@
+/log/*
+/tmp/*
+/storage/*
+!/log/.keep
+!/tmp/.keep
+!/storage/.keep
+/public/assets
+.byebug_history
+/config/master.key
+/config/credentials/*.key
+/coverage

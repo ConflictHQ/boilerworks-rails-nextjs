@@ -1,0 +1,26 @@
+Build completed: Rails 8 API + Next.js 16 full-stack application
+
+Backend (Rails 8 API mode):
+- GraphQL Ruby schema with types, queries, mutations
+- Session-based auth (httpOnly cookies)
+- Pundit group-based permissions
+- Products + Categories CRUD
+- Forms engine (FormDefinition, FormSubmission)
+- Workflow engine (WorkflowDefinition, WorkflowInstance, TransitionLog)
+- Auditable, SoftDeletable, ExternalId, Versionable concerns
+- RSpec tests (auth, GraphQL products, models, policies)
+- Seeds with admin user, permissions, sample data
+
+Frontend (Next.js 16):
+- Apollo Client with session cookies
+- Login page with direct Rails auth
+- Dashboard, Products, Categories, Forms, Workflows pages
+- Dark admin theme (Boilerworks branding)
+- GraphQL hooks for all domains
+- Sidebar navigation with user dropdown
+
+Infrastructure:
+- Docker Compose (api:3001, ui:3002, postgres:5444, redis:6387)
+- Dockerfile.dev for both services
+- GitHub Actions CI pipeline
+- Makefile for common operations

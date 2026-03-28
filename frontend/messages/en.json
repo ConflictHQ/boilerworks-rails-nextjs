@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "categories": "Categories",
+    "forms": "Form Engine",
+    "workflows": "Workflows",
+    "settings": "Settings",
+    "new": "Create New",
+    "all": "All"
+  },
+  "user": {
+    "account": "Account",
+    "notifications": "Notifications",
+    "logout": "Log out"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "loading": "Loading...",
+    "noResults": "No results found"
+  }
+}
