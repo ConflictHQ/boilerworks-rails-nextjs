@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  url: <%= ENV.fetch("DATABASE_URL", "postgres://boilerworks:boilerworks@localhost:5444/boilerworks_development") %>
+  url: <%= ENV.fetch("DATABASE_URL", "postgres://boilerworks:boilerworks@localhost:5432/boilerworks_development") %>
 
 test:
   <<: *default
-  url: <%= ENV.fetch("DATABASE_URL", "postgres://boilerworks:boilerworks@localhost:5444/boilerworks_test") %>
+  url: <%= ENV.fetch("DATABASE_URL", "postgres://boilerworks:boilerworks@localhost:5432/boilerworks_test") %>
 
 production:
   <<: *default

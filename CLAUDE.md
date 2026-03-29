@@ -28,8 +28,8 @@ backend/ (Rails 8 API, port 3001)
   |-- Pundit policies
   |-- Active Record + concerns
   |-- Solid Queue
-  |-- PostgreSQL 16 (port 5444)
-  +-- Redis 7 (port 6387)
+  |-- PostgreSQL 16 (port 5432)
+  +-- Redis 7 (port 6379)
 ```
 
 ## Running

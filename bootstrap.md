@@ -15,8 +15,8 @@ backend/ (Rails 8 API mode, port 3001)
   |-- Pundit policies (group-based permissions)
   |-- Active Record + model concerns
   |-- Solid Queue (Active Job)
-  |-- PostgreSQL 16 (port 5444)
-  +-- Redis 7 (port 6387)
+  |-- PostgreSQL 16 (port 5432)
+  +-- Redis 7 (port 6379)
 ```
 
 The backend is a pure JSON API -- no views, no Turbo. The frontend is a standalone Next.js
@@ -157,11 +157,11 @@ Default admin: `admin@boilerworks.dev` / `password`
 
 | Service | URL |
 |---------|-----|
-| Backend API | http://localhost:3001 |
-| Frontend | http://localhost:3002 |
-| Health check | http://localhost:3001/up |
-| Mailpit | http://localhost:8026 |
-| MinIO | http://localhost:9003 |
+| Backend API | http://localhost:8000 |
+| Frontend | http://localhost:3000 |
+| Health check | http://localhost:8000/up |
+| Mailpit | http://localhost:8025 |
+| MinIO | http://localhost:9001 |
 
 ## Code Style
 

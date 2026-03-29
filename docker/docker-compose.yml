@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile.dev
     container_name: boilerworks-rails-api
     ports:
-      - "3001:3001"
+      - "8000:3001"
     volumes:
       - ../backend:/app
       - bundle_cache:/usr/local/bundle
@@ -14,7 +14,7 @@ services:
       - REDIS_URL=redis://redis:6379/0
       - RAILS_ENV=development
       - RAILS_LOG_TO_STDOUT=true
-      - FRONTEND_URL=http://localhost:3002
+      - FRONTEND_URL=http://localhost:3000
     depends_on:
       db:
         condition: service_healthy
@@ -34,12 +34,12 @@ services:
       dockerfile: Dockerfile.dev
     container_name: boilerworks-rails-ui
     ports:
-      - "3002:3002"
+      - "3000:3002"
     volumes:
       - ../frontend:/app
       - /app/node_modules
     environment:
-      - NEXT_PUBLIC_API_ROOT=http://localhost:3001
+      - NEXT_PUBLIC_API_ROOT=http://localhost:8000
     depends_on:
       api:
         condition: service_healthy
@@ -49,7 +49,7 @@ services:
     image: postgres:16-alpine
     container_name: boilerworks-rails-nextjs-db
     ports:
-      - "5444:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_USER=boilerworks
       - POSTGRES_PASSWORD=boilerworks
@@ -67,7 +67,7 @@ services:
     image: redis:7-alpine
     container_name: boilerworks-rails-nextjs-redis
     ports:
-      - "6387:6379"
+      - "6379:6379"
     volumes:
       - rails_nextjs_redis:/data
     healthcheck:
