@@ -15,10 +15,10 @@ FactoryBot.define do
       end
     end
 
-    trait :with_product_permissions do
+    trait :with_item_permissions do
       after(:create) do |user|
-        group = Group.find_or_create_by!(name: "product-editors")
-        %w[product.view product.add product.change product.delete].each do |slug|
+        group = Group.find_or_create_by!(name: "item-editors")
+        %w[item.view item.add item.change item.delete].each do |slug|
           perm = Permission.find_or_create_by!(slug: slug) { |p| p.name = slug.titleize }
           group.permissions << perm unless group.permissions.include?(perm)
         end
@@ -30,7 +30,7 @@ FactoryBot.define do
       after(:create) do |user|
         group = Group.find_or_create_by!(name: "full-access")
         %w[
-          product.view product.add product.change product.delete
+          item.view item.add item.change item.delete
           category.view category.add category.change category.delete
           form.view form.add form.change form.delete
           workflow.view workflow.add workflow.change workflow.delete

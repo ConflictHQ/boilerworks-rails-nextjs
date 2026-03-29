@@ -15,8 +15,8 @@ export default function DashboardPage() {
       </div>
       <hr className="border-border" />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <DashboardCard title="Products" description="Manage your product catalogue" href="/products" />
-        <DashboardCard title="Categories" description="Organize products into categories" href="/categories" />
+        <DashboardCard title="Items" description="Manage your item catalogue" href="/items" />
+        <DashboardCard title="Categories" description="Organize items into categories" href="/categories" />
         <DashboardCard title="Form Engine" description="Build and manage dynamic forms" href="/forms" />
         <DashboardCard title="Workflows" description="Design approval workflows" href="/workflows" />
       </div>

@@ -29,20 +29,20 @@ describe('Permission checking', () => {
   it('wildcard scope grants all permissions', () => {
     const hasPermission = (perms: string[], required: string) =>
       perms.includes('*') || perms.includes(required);
-    expect(hasPermission(['*'], 'products.view')).toBe(true);
+    expect(hasPermission(['*'], 'items.view')).toBe(true);
     expect(hasPermission(['*'], 'anything.whatever')).toBe(true);
   });
 
   it('specific scope grants only that permission', () => {
     const hasPermission = (perms: string[], required: string) =>
       perms.includes('*') || perms.includes(required);
-    expect(hasPermission(['products.view'], 'products.view')).toBe(true);
-    expect(hasPermission(['products.view'], 'products.create')).toBe(false);
+    expect(hasPermission(['items.view'], 'items.view')).toBe(true);
+    expect(hasPermission(['items.view'], 'items.create')).toBe(false);
   });
 
   it('empty scopes deny all', () => {
     const hasPermission = (perms: string[], required: string) =>
       perms.includes('*') || perms.includes(required);
-    expect(hasPermission([], 'products.view')).toBe(false);
+    expect(hasPermission([], 'items.view')).toBe(false);
   });
 });

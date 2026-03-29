@@ -3,7 +3,7 @@ export type Category = {
   name: string;
   slug: string;
   description: string | null;
-  productsCount: number;
+  itemsCount: number;
   createdAt: string;
   updatedAt: string;
 };

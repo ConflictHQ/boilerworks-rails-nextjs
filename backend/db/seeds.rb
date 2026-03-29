@@ -1,10 +1,10 @@
 puts "Seeding permissions..."
 
 permission_data = [
-  { name: "View Products",    slug: "product.view" },
-  { name: "Add Products",     slug: "product.add" },
-  { name: "Change Products",  slug: "product.change" },
-  { name: "Delete Products",  slug: "product.delete" },
+  { name: "View Items",    slug: "item.view" },
+  { name: "Add Items",     slug: "item.add" },
+  { name: "Change Items",  slug: "item.change" },
+  { name: "Delete Items",  slug: "item.delete" },
   { name: "View Categories",  slug: "category.view" },
   { name: "Add Categories",   slug: "category.add" },
   { name: "Change Categories", slug: "category.change" },
@@ -33,7 +33,7 @@ admin_group = Group.find_or_create_by!(name: "Admin")
 admin_group.permissions = Permission.all
 
 editor_group = Group.find_or_create_by!(name: "Editor")
-editor_group.permissions = Permission.where(slug: %w[product.view category.view form.view workflow.view])
+editor_group.permissions = Permission.where(slug: %w[item.view category.view form.view workflow.view])
 
 puts "  Created Admin group (#{admin_group.permissions.count} permissions)"
 puts "  Created Editor group (#{editor_group.permissions.count} permissions)"
@@ -69,9 +69,9 @@ end
 
 puts "  Created #{categories.size} categories"
 
-puts "Seeding products..."
+puts "Seeding items..."
 
-products = [
+items = [
   { name: "Wireless Headphones", slug: "wireless-headphones", description: "Bluetooth noise-cancelling headphones", price: 79.99, category: categories["electronics"] },
   { name: "USB-C Hub", slug: "usb-c-hub", description: "7-in-1 USB-C docking station", price: 49.99, category: categories["electronics"] },
   { name: "Mechanical Keyboard", slug: "mechanical-keyboard", description: "Cherry MX Brown switches, RGB backlit", price: 129.99, category: categories["electronics"] },
@@ -80,15 +80,15 @@ products = [
   { name: "Garden Tool Set", slug: "garden-tool-set", description: "5-piece stainless steel garden tool kit", price: 34.99, category: categories["home-garden"] }
 ]
 
-products.each do |attrs|
+items.each do |attrs|
   category = attrs.delete(:category)
-  Product.find_or_create_by!(slug: attrs[:slug]) do |p|
+  Item.find_or_create_by!(slug: attrs[:slug]) do |p|
     p.assign_attributes(attrs)
     p.category = category
   end
 end
 
-puts "  Created #{products.size} products"
+puts "  Created #{items.size} items"
 
 puts "Seeding sample form definition..."
 
@@ -117,7 +117,7 @@ puts "Seeding sample workflow definition..."
 WorkflowDefinition.find_or_create_by!(slug: "content-approval") do |w|
   w.name = "Content Approval"
   w.description = "Review and approval workflow for content"
-  w.target_type = "Product"
+  w.target_type = "Item"
   w.states = [
     { "name" => "draft", "initial" => true, "label" => "Draft" },
     { "name" => "in_review", "label" => "In Review" },

@@ -16,7 +16,7 @@ import {
 
 const navItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboardIcon },
-  { title: "Products", url: "/products", icon: PackageIcon },
+  { title: "Items", url: "/items", icon: PackageIcon },
   { title: "Categories", url: "/categories", icon: FolderIcon },
   { title: "Form Engine", url: "/forms", icon: ClipboardListIcon },
   { title: "Workflows", url: "/workflows", icon: ZapIcon },

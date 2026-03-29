@@ -71,7 +71,7 @@ All business models include:
 
 ## Permissions
 
-Group-based via Pundit. Permission slugs: `resource.action` (e.g., `product.view`, `form.add`).
+Group-based via Pundit. Permission slugs: `resource.action` (e.g., `item.view`, `form.add`).
 Every GraphQL resolver calls `require_auth!` then `authorize(record, :action?)`.
 
 ## Frontend
@@ -79,7 +79,7 @@ Every GraphQL resolver calls `require_auth!` then `authorize(record, :action?)`.
 - Apollo Client with session cookies (`credentials: "include"`)
 - GraphQL operations: `frontend/graphql/<domain>/`
 - Dark admin theme (shadcn/ui CSS variables)
-- Hooks pattern: `useProducts()`, `useMe()`, etc.
+- Hooks pattern: `useItems()`, `useMe()`, etc.
 - Route labels in `lib/routes.ts`
 - Nav items in `components/AppSidebar.tsx`
 

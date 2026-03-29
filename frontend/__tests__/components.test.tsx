@@ -70,8 +70,8 @@ function LoginForm({ onSubmit }: { onSubmit: (email: string, password: string) =
 
 describe('StatCard', () => {
   it('renders label and value', () => {
-    render(<StatCard label="Products" value={42} />);
-    expect(screen.getByText('Products')).toBeDefined();
+    render(<StatCard label="Items" value={42} />);
+    expect(screen.getByText('Items')).toBeDefined();
     expect(screen.getByText('42')).toBeDefined();
   });
 
@@ -84,7 +84,7 @@ describe('StatCard', () => {
 describe('PermissionGate', () => {
   it('renders children when permission granted', () => {
     render(
-      <PermissionGate permissions={['products.view']} required="products.view">
+      <PermissionGate permissions={['items.view']} required="items.view">
         <span>Visible</span>
       </PermissionGate>,
     );
@@ -93,7 +93,7 @@ describe('PermissionGate', () => {
 
   it('hides children when permission denied', () => {
     render(
-      <PermissionGate permissions={['products.view']} required="products.create">
+      <PermissionGate permissions={['items.view']} required="items.create">
         <span>Hidden</span>
       </PermissionGate>,
     );
@@ -111,7 +111,7 @@ describe('PermissionGate', () => {
 
   it('empty permissions deny all', () => {
     render(
-      <PermissionGate permissions={[]} required="products.view">
+      <PermissionGate permissions={[]} required="items.view">
         <span>Denied</span>
       </PermissionGate>,
     );
@@ -121,10 +121,10 @@ describe('PermissionGate', () => {
 
 describe('NavItem', () => {
   it('renders link with label', () => {
-    render(<NavItem href="/products" label="Products" active={false} />);
-    const link = screen.getByText('Products');
+    render(<NavItem href="/items" label="Items" active={false} />);
+    const link = screen.getByText('Items');
     expect(link).toBeDefined();
-    expect(link.getAttribute('href')).toBe('/products');
+    expect(link.getAttribute('href')).toBe('/items');
   });
 
   it('applies active class when active', () => {
@@ -133,8 +133,8 @@ describe('NavItem', () => {
   });
 
   it('does not apply active class when inactive', () => {
-    render(<NavItem href="/products" label="Products" active={false} />);
-    expect(screen.getByText('Products').className).not.toContain('active');
+    render(<NavItem href="/items" label="Items" active={false} />);
+    expect(screen.getByText('Items').className).not.toContain('active');
   });
 });
 

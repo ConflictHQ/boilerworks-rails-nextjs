@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
 
 describe('GraphQL type definitions', () => {
-  it('Product type has required fields', () => {
-    const productFields = ['id', 'name', 'price', 'status', 'category'];
-    expect(productFields).toContain('id');
-    expect(productFields).toContain('name');
-    expect(productFields).toContain('price');
-    expect(productFields).toContain('status');
+  it('Item type has required fields', () => {
+    const itemFields = ['id', 'name', 'price', 'status', 'category'];
+    expect(itemFields).toContain('id');
+    expect(itemFields).toContain('name');
+    expect(itemFields).toContain('price');
+    expect(itemFields).toContain('status');
   });
 
   it('Category type has required fields', () => {

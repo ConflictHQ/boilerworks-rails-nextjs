@@ -52,7 +52,7 @@ field :errors, [Types::FieldErrorType], null: true
 
 ## Model Concerns
 
-All domain models (Product, Category, FormDefinition, etc.) include four concerns:
+All domain models (Item, Category, FormDefinition, etc.) include four concerns:
 
 | Concern | Purpose |
 |---------|---------|
@@ -67,10 +67,10 @@ All domain models (Product, Category, FormDefinition, etc.) include four concern
 Permission (slug) --> Group (HABTM) --> User
 ```
 
-Slugs follow `resource.action` format: `product.view`, `form.add`, `workflow.change`, etc.
+Slugs follow `resource.action` format: `item.view`, `form.add`, `workflow.change`, etc.
 
 Pundit policies use `has?(slug)` helper from `ApplicationPolicy`. Every policy mirrors a
-model: `ProductPolicy` for `Product`, `CategoryPolicy` for `Category`.
+model: `ItemPolicy` for `Item`, `CategoryPolicy` for `Category`.
 
 Policy scopes return `scope.all` if the user has the `.view` permission, `scope.none` otherwise.
 
@@ -106,8 +106,8 @@ Backend uses RSpec + FactoryBot. Specs live in `backend/spec/`.
 **Request specs** (`spec/requests/`) target `/graphql` using the `graphql_query` helper:
 
 ```ruby
-graphql_query("{ products { id name } }", user: user)
-expect(graphql_data["products"]).to be_present
+graphql_query("{ items { id name } }", user: user)
+expect(graphql_data["items"]).to be_present
 ```
 
 **Model specs** (`spec/models/`) use shoulda-matchers for validations plus custom tests
@@ -115,7 +115,7 @@ for UUID generation and soft delete behavior.
 
 **Policy specs** (`spec/policies/`) test both allowed and denied cases per action.
 
-**Factories** (`spec/factories/`) with traits like `:with_product_permissions`, `:with_all_permissions`.
+**Factories** (`spec/factories/`) with traits like `:with_item_permissions`, `:with_all_permissions`.
 
 **Auth helpers** (`spec/support/`) provide `sign_in(user)` for request specs and
 `graphql_query(query, user:, variables:)` for GraphQL specs.
@@ -133,7 +133,7 @@ Error link catches `UNAUTHENTICATED` and redirects. Cache uses `cache-and-networ
 - `*.types.ts` -- TypeScript types for query/mutation data
 - `*.hooks.ts` -- React hooks wrapping `useQuery`/`useMutation`
 
-Example: `useProducts()` returns `{ products, loading, error, refetch }`.
+Example: `useItems()` returns `{ items, loading, error, refetch }`.
 
 **Route labels**: `lib/routes.ts`. **Nav items**: `components/AppSidebar.tsx`.
 

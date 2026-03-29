@@ -3,20 +3,20 @@ import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { MockedProvider } from '@apollo/client/testing/react';
 import { InMemoryCache } from '@apollo/client';
-import { GET_PRODUCTS } from '@/graphql/products/products.queries';
+import { GET_ITEMS } from '@/graphql/items/items.queries';
 import { GET_ME } from '@/graphql/user/user.queries';
-import { useProducts } from '@/graphql/products/products.hooks';
+import { useItems } from '@/graphql/items/items.hooks';
 import { useMe } from '@/graphql/user/user.hooks';
 import { GraphQLError } from 'graphql';
 
 // Test wrapper that renders hook data into the DOM for assertion
-function ProductsHookConsumer({ search }: { search?: string }) {
-  const { products, loading, error } = useProducts(search);
+function ItemsHookConsumer({ search }: { search?: string }) {
+  const { items, loading, error } = useItems(search);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   return (
     <ul>
-      {products.map((p) => (
+      {items.map((p) => (
         <li key={p.id}>{p.name} - ${p.price}</li>
       ))}
     </ul>
@@ -31,7 +31,7 @@ function MeHookConsumer() {
   return <p>{user.displayName} ({user.email})</p>;
 }
 
-const mockProducts = [
+const mockItems = [
   {
     id: 'uuid-1',
     name: 'Widget',
@@ -63,18 +63,18 @@ const mockUser = {
   permissions: ['*'],
 };
 
-describe('useProducts hook', () => {
-  it('returns products from a mocked GraphQL response', async () => {
+describe('useItems hook', () => {
+  it('returns items from a mocked GraphQL response', async () => {
     const mocks = [
       {
-        request: { query: GET_PRODUCTS, variables: { search: undefined, categoryId: undefined } },
-        result: { data: { products: mockProducts } },
+        request: { query: GET_ITEMS, variables: { search: undefined, categoryId: undefined } },
+        result: { data: { items: mockItems } },
       },
     ];
 
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <ProductsHookConsumer />
+        <ItemsHookConsumer />
       </MockedProvider>,
     );
 
@@ -89,14 +89,14 @@ describe('useProducts hook', () => {
   it('returns an error when the query fails', async () => {
     const mocks = [
       {
-        request: { query: GET_PRODUCTS, variables: { search: undefined, categoryId: undefined } },
+        request: { query: GET_ITEMS, variables: { search: undefined, categoryId: undefined } },
         error: new Error('Network failure'),
       },
     ];
 
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <ProductsHookConsumer />
+        <ItemsHookConsumer />
       </MockedProvider>,
     );
 
@@ -105,17 +105,17 @@ describe('useProducts hook', () => {
     });
   });
 
-  it('returns empty array when no products exist', async () => {
+  it('returns empty array when no items exist', async () => {
     const mocks = [
       {
-        request: { query: GET_PRODUCTS, variables: { search: undefined, categoryId: undefined } },
-        result: { data: { products: [] } },
+        request: { query: GET_ITEMS, variables: { search: undefined, categoryId: undefined } },
+        result: { data: { items: [] } },
       },
     ];
 
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <ProductsHookConsumer />
+        <ItemsHookConsumer />
       </MockedProvider>,
     );
 

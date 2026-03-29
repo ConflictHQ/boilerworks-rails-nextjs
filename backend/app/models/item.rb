@@ -1,4 +1,4 @@
-class Product < ApplicationRecord
+class Item < ApplicationRecord
   include Auditable, SoftDeletable, ExternalId, Versionable
 
   belongs_to :category, optional: true

@@ -1,5 +1,5 @@
 module Types
-  class ProductType < Types::BaseObject
+  class ItemType < Types::BaseObject
     field :id, ID, null: false, method: :uuid
     field :name, String, null: false
     field :slug, String

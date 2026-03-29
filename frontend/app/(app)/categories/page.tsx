@@ -42,7 +42,7 @@ export default function CategoriesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-semibold">Categories</h1>
-          <p className="text-muted-foreground mt-1 text-sm">Organize products into categories.</p>
+          <p className="text-muted-foreground mt-1 text-sm">Organize items into categories.</p>
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
@@ -101,7 +101,7 @@ export default function CategoriesPage() {
               <tr>
                 <th className="px-4 py-3 text-left font-medium">Name</th>
                 <th className="px-4 py-3 text-left font-medium">Slug</th>
-                <th className="px-4 py-3 text-left font-medium">Products</th>
+                <th className="px-4 py-3 text-left font-medium">Items</th>
                 <th className="px-4 py-3 text-right font-medium">Actions</th>
               </tr>
             </thead>
@@ -110,7 +110,7 @@ export default function CategoriesPage() {
                 <tr key={cat.id} className="border-border border-b last:border-0">
                   <td className="px-4 py-3 font-medium">{cat.name}</td>
                   <td className="text-muted-foreground px-4 py-3">{cat.slug}</td>
-                  <td className="px-4 py-3">{cat.productsCount}</td>
+                  <td className="px-4 py-3">{cat.itemsCount}</td>
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => handleDelete(cat.id)}

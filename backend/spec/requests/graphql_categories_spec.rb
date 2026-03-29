@@ -6,7 +6,7 @@ RSpec.describe "Categories GraphQL", type: :request do
   let!(:category) { create(:category, name: "Electronics", slug: "electronics") }
 
   describe "query categories" do
-    let(:query) { "{ categories { id name slug description productsCount } }" }
+    let(:query) { "{ categories { id name slug description itemsCount } }" }
 
     it "lists categories for authorized user" do
       graphql_query(query, user: user)
@@ -37,7 +37,7 @@ RSpec.describe "Categories GraphQL", type: :request do
     let(:query) do
       <<~GQL
         query Category($id: ID!) {
-          category(id: $id) { id name slug description productsCount }
+          category(id: $id) { id name slug description itemsCount }
         }
       GQL
     end
@@ -48,7 +48,7 @@ RSpec.describe "Categories GraphQL", type: :request do
       expect(response).to have_http_status(:ok)
       data = graphql_data["category"]
       expect(data["name"]).to eq("Electronics")
-      expect(data["productsCount"]).to eq(0)
+      expect(data["itemsCount"]).to eq(0)
     end
 
     it "denies access for user without category.view" do

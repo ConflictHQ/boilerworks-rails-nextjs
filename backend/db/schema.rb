@@ -97,7 +97,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_27_010014) do
     t.index ["slug"], name: "index_permissions_on_slug", unique: true
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.integer "created_by_id"

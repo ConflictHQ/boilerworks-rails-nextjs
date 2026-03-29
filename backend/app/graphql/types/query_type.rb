@@ -7,29 +7,29 @@ module Types
       context[:current_user]
     end
 
-    # Products
-    field :products, [Types::ProductType], null: false, description: "List all products" do
+    # Items
+    field :items, [Types::ItemType], null: false, description: "List all items" do
       argument :search, String, required: false
       argument :category_id, ID, required: false
     end
 
-    field :product, Types::ProductType, null: true, description: "Find product by ID" do
+    field :item, Types::ItemType, null: true, description: "Find item by ID" do
       argument :id, ID, required: true
     end
 
-    def products(search: nil, category_id: nil)
+    def items(search: nil, category_id: nil)
       require_auth!
-      scope = Pundit.policy_scope(context[:current_user], Product).includes(:category)
+      scope = Pundit.policy_scope(context[:current_user], Item).includes(:category)
       scope = scope.where("name ILIKE ?", "%#{search}%") if search.present?
       scope = scope.where(category: Category.find_by_uuid!(category_id)) if category_id.present?
       scope.order(created_at: :desc)
     end
 
-    def product(id:)
+    def item(id:)
       require_auth!
-      product = Product.find_by_uuid!(id)
-      Pundit.authorize(context[:current_user], product, :show?)
-      product
+      item = Item.find_by_uuid!(id)
+      Pundit.authorize(context[:current_user], item, :show?)
+      item
     end
 
     # Categories

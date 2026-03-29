@@ -28,16 +28,16 @@ function PermissionGuard({
 describe('PermissionGuard', () => {
   it('renders children when user holds the exact permission', () => {
     render(
-      <PermissionGuard userPermissions={['products.view']} required="products.view">
-        <p>Product list</p>
+      <PermissionGuard userPermissions={['items.view']} required="items.view">
+        <p>Item list</p>
       </PermissionGuard>,
     );
-    expect(screen.getByText('Product list')).toBeDefined();
+    expect(screen.getByText('Item list')).toBeDefined();
   });
 
   it('hides children when user lacks the required permission', () => {
     render(
-      <PermissionGuard userPermissions={['products.view']} required="products.delete">
+      <PermissionGuard userPermissions={['items.view']} required="items.delete">
         <p>Delete button</p>
       </PermissionGuard>,
     );
@@ -70,8 +70,8 @@ describe('PermissionGuard', () => {
   it('requires ALL permissions when given an array', () => {
     render(
       <PermissionGuard
-        userPermissions={['products.view']}
-        required={['products.view', 'products.edit']}
+        userPermissions={['items.view']}
+        required={['items.view', 'items.edit']}
       >
         <p>Edit form</p>
       </PermissionGuard>,
@@ -82,8 +82,8 @@ describe('PermissionGuard', () => {
   it('grants access when user holds all required permissions', () => {
     render(
       <PermissionGuard
-        userPermissions={['products.view', 'products.edit']}
-        required={['products.view', 'products.edit']}
+        userPermissions={['items.view', 'items.edit']}
+        required={['items.view', 'items.edit']}
       >
         <p>Edit form</p>
       </PermissionGuard>,

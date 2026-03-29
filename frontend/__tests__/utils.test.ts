@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 
 describe('lib/utils', () => {
   it('formats route paths correctly', () => {
-    const path = '/products';
+    const path = '/items';
     expect(path.startsWith('/')).toBe(true);
   });
 
@@ -15,7 +15,7 @@ describe('lib/routes', () => {
   it('defines expected route constants', () => {
     const routes = {
       dashboard: '/dashboard',
-      products: '/products',
+      items: '/items',
       categories: '/categories',
       forms: '/forms',
       workflows: '/workflows',

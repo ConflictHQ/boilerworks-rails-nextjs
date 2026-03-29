@@ -7,7 +7,7 @@ export const GET_CATEGORIES = gql`
       name
       slug
       description
-      productsCount
+      itemsCount
       createdAt
       updatedAt
     }

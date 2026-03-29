@@ -12,13 +12,13 @@ RSpec.describe User, type: :model do
 
   describe "#has_permission?" do
     it "returns true when user has the permission" do
-      user = create(:user, :with_product_permissions)
-      expect(user.has_permission?("product.view")).to be true
+      user = create(:user, :with_item_permissions)
+      expect(user.has_permission?("item.view")).to be true
     end
 
     it "returns false when user lacks the permission" do
       user = create(:user)
-      expect(user.has_permission?("product.view")).to be false
+      expect(user.has_permission?("item.view")).to be false
     end
   end
 end

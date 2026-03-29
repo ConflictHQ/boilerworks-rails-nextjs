@@ -7,8 +7,8 @@ describe('routeLabels', () => {
     expect(routeLabels['dashboard']).toBe('Dashboard');
   });
 
-  it('maps products to Products', () => {
-    expect(routeLabels['products']).toBe('Products');
+  it('maps items to Items', () => {
+    expect(routeLabels['items']).toBe('Items');
   });
 
   it('maps forms to Form Engine', () => {

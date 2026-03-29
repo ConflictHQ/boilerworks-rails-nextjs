@@ -1,4 +1,4 @@
-export type Product = {
+export type Item = {
   id: string;
   name: string;
   slug: string | null;
@@ -9,30 +9,30 @@ export type Product = {
   updatedAt: string;
 };
 
-export type ProductsQueryData = {
-  products: Product[];
+export type ItemsQueryData = {
+  items: Item[];
 };
 
-export type ProductQueryData = {
-  product: Product | null;
+export type ItemQueryData = {
+  item: Item | null;
 };
 
-export type CreateProductData = {
-  createProduct: {
+export type CreateItemData = {
+  createItem: {
     ok: boolean;
-    product: Product | null;
+    item: Item | null;
     errors: { field: string; messages: string[] }[] | null;
   };
 };
 
-export type UpdateProductData = {
-  updateProduct: {
+export type UpdateItemData = {
+  updateItem: {
     ok: boolean;
-    product: Product | null;
+    item: Item | null;
     errors: { field: string; messages: string[] }[] | null;
   };
 };
 
-export type DeleteProductData = {
-  deleteProduct: { ok: boolean };
+export type DeleteItemData = {
+  deleteItem: { ok: boolean };
 };
