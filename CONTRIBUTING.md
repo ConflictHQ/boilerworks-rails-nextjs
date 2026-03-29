@@ -1,22 +1,32 @@
-# Contributing to Boilerworks Rails + Next.js
+# Contributing to Boilerworks rails + nextjs
 
 Thank you for your interest in contributing!
 
 ## Getting Started
 
-This template is currently planned. See the [stack primer](../primers/rails/PRIMER.md) for the architecture and build plan.
+1. Fork the repository
+2. Clone your fork
+3. Run `docker compose up -d` (or see README.md for stack-specific setup)
+4. Create a feature branch from `main`
 
 ## Development Process
 
-1. Fork the repository
-2. Create a feature branch from `main`
-3. Make your changes
-4. Submit a pull request
+1. Pick an issue from the project board
+2. Comment your plan on the issue before starting
+3. Create a branch: `feature/issue-number-description` or `fix/issue-number-description`
+4. Make your changes following `bootstrap.md` conventions
+5. Write or update tests
+6. Run lint and tests (see README.md for commands)
+7. Submit a pull request
 
 ## Code Style
 
-Will be defined as the template is built. See the stack primer for planned conventions.
+See `bootstrap.md` for conventions. Run the linter before committing.
+
+## Testing
+
+All new features need tests. All bug fixes need regression tests. Tests must use a real database — never mock.
 
 ## Questions?
 
-Open an issue in this repository.
+Open an issue or start a discussion in this repository.
