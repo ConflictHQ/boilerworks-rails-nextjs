@@ -1,7 +1,9 @@
 module Api
   class GraphqlController < ApplicationController
-    # Allow unauthenticated access -- the schema handles auth checks per resolver
+    # Skip the 401 guard — schema handles auth per resolver.
+    # Still resume the session so Current.user is populated for authenticated requests.
     skip_before_action :require_authentication
+    before_action :resume_session
 
     def execute
       variables = prepare_variables(params[:variables])
