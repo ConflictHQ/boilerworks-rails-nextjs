@@ -13,3 +13,6 @@ Style/Documentation:
 
 Metrics/MethodLength:
   Max: 25
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
