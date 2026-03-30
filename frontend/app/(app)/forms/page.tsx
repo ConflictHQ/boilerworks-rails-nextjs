@@ -58,7 +58,10 @@ export default function FormsPage() {
                   </td>
                   <td className="px-4 py-3">{form.submissionsCount}</td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={`/forms/${form.slug}`} className="text-primary text-xs hover:underline">
+                    <Link
+                      href={`/forms/${form.slug}`}
+                      className="text-primary text-xs hover:underline"
+                    >
                       View
                     </Link>
                     {form.status === "published" && (

@@ -13,7 +13,9 @@ export default function WorkflowsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-semibold">Workflows</h1>
-          <p className="text-muted-foreground mt-1 text-sm">Design and manage approval workflows.</p>
+          <p className="text-muted-foreground mt-1 text-sm">
+            Design and manage approval workflows.
+          </p>
         </div>
         <Link
           href="/workflows/new"

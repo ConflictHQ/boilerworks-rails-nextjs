@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useCategories, useCreateCategory, useDeleteCategory } from "@/graphql/categories/categories.hooks";
+import {
+  useCategories,
+  useCreateCategory,
+  useDeleteCategory,
+} from "@/graphql/categories/categories.hooks";
 import { toast } from "sonner";
 
 export default function CategoriesPage() {
@@ -15,7 +19,9 @@ export default function CategoriesPage() {
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { data } = await createCategory({ variables: { name, slug, description: description || null } });
+    const { data } = await createCategory({
+      variables: { name, slug, description: description || null },
+    });
     if (data?.createCategory.ok) {
       toast.success("Category created");
       setName("");
@@ -54,7 +60,10 @@ export default function CategoriesPage() {
       <hr className="border-border" />
 
       {showForm && (
-        <form onSubmit={handleCreate} className="bg-card border-border space-y-4 rounded-lg border p-4">
+        <form
+          onSubmit={handleCreate}
+          className="bg-card border-border space-y-4 rounded-lg border p-4"
+        >
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <div>
               <label className="text-sm font-medium">Name</label>

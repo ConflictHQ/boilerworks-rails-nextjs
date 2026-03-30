@@ -1,6 +1,6 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import React from 'react';
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen } from "@testing-library/react";
+import React from "react";
 
 /**
  * GraphQLErrorBoundary: catches rendering errors and displays
@@ -42,43 +42,43 @@ function GoodComponent() {
   return <p>All good</p>;
 }
 
-describe('GraphQLErrorBoundary', () => {
+describe("GraphQLErrorBoundary", () => {
   // Suppress React's noisy console.error for expected errors
   beforeEach(() => {
-    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(console, "error").mockImplementation(() => {});
   });
 
-  it('renders children when no error occurs', () => {
+  it("renders children when no error occurs", () => {
     render(
       <GraphQLErrorBoundary>
         <GoodComponent />
-      </GraphQLErrorBoundary>,
+      </GraphQLErrorBoundary>
     );
-    expect(screen.getByText('All good')).toBeDefined();
+    expect(screen.getByText("All good")).toBeDefined();
   });
 
-  it('renders error message when a child throws', () => {
+  it("renders error message when a child throws", () => {
     render(
       <GraphQLErrorBoundary>
         <ThrowingComponent message="UNAUTHENTICATED" />
-      </GraphQLErrorBoundary>,
+      </GraphQLErrorBoundary>
     );
-    expect(screen.getByRole('alert')).toBeDefined();
-    expect(screen.getByText('Something went wrong')).toBeDefined();
-    expect(screen.getByText('UNAUTHENTICATED')).toBeDefined();
+    expect(screen.getByRole("alert")).toBeDefined();
+    expect(screen.getByText("Something went wrong")).toBeDefined();
+    expect(screen.getByText("UNAUTHENTICATED")).toBeDefined();
   });
 
-  it('renders custom fallback message when provided', () => {
+  it("renders custom fallback message when provided", () => {
     render(
       <GraphQLErrorBoundary fallbackMessage="Please try again later">
         <ThrowingComponent message="Network failure" />
-      </GraphQLErrorBoundary>,
+      </GraphQLErrorBoundary>
     );
-    expect(screen.getByText('Please try again later')).toBeDefined();
-    expect(screen.queryByText('Network failure')).toBeNull();
+    expect(screen.getByText("Please try again later")).toBeDefined();
+    expect(screen.queryByText("Network failure")).toBeNull();
   });
 
-  it('catches errors from deeply nested children', () => {
+  it("catches errors from deeply nested children", () => {
     render(
       <GraphQLErrorBoundary>
         <div>
@@ -86,9 +86,9 @@ describe('GraphQLErrorBoundary', () => {
             <ThrowingComponent message="Deep error" />
           </div>
         </div>
-      </GraphQLErrorBoundary>,
+      </GraphQLErrorBoundary>
     );
-    expect(screen.getByText('Something went wrong')).toBeDefined();
-    expect(screen.getByText('Deep error')).toBeDefined();
+    expect(screen.getByText("Something went wrong")).toBeDefined();
+    expect(screen.getByText("Deep error")).toBeDefined();
   });
 });

@@ -43,7 +43,9 @@ export default function NewWorkflowPage() {
     <div className="flex flex-1 flex-col gap-6 p-6">
       <div>
         <h1 className="text-xl font-semibold">New Workflow</h1>
-        <p className="text-muted-foreground mt-1 text-sm">Create a new workflow definition with default states.</p>
+        <p className="text-muted-foreground mt-1 text-sm">
+          Create a new workflow definition with default states.
+        </p>
       </div>
       <hr className="border-border" />
       <form onSubmit={handleSubmit} className="max-w-xl space-y-4">

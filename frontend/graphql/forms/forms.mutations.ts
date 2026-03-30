@@ -1,7 +1,12 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_FORM_DEFINITION = gql`
-  mutation CreateFormDefinition($name: String!, $slug: String!, $description: String, $schema: JSON) {
+  mutation CreateFormDefinition(
+    $name: String!
+    $slug: String!
+    $description: String
+    $schema: JSON
+  ) {
     createFormDefinition(name: $name, slug: $slug, description: $description, schema: $schema) {
       ok
       formDefinition {

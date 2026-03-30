@@ -17,7 +17,9 @@ export default function FormSubmitPage() {
   if (error) return <div className="p-6 text-red-500">Error loading form</div>;
   if (!formDefinition) return <div className="p-6">Form not found</div>;
 
-  const fields = (formDefinition.schema as { fields?: { name: string; type: string; label: string }[] })?.fields ?? [];
+  const fields =
+    (formDefinition.schema as { fields?: { name: string; type: string; label: string }[] })
+      ?.fields ?? [];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +54,9 @@ export default function FormSubmitPage() {
               />
             ) : (
               <input
-                type={field.type === "email" ? "email" : field.type === "number" ? "number" : "text"}
+                type={
+                  field.type === "email" ? "email" : field.type === "number" ? "number" : "text"
+                }
                 value={formData[field.name] ?? ""}
                 onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
                 className="border-input bg-background flex h-10 w-full rounded-md border px-3 py-2 text-sm"

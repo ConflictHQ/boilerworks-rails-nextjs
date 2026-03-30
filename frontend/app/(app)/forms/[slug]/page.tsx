@@ -12,7 +12,9 @@ export default function FormDetailPage() {
   if (error) return <div className="p-6 text-red-500">Error loading form</div>;
   if (!formDefinition) return <div className="p-6">Form not found</div>;
 
-  const fields = (formDefinition.schema as { fields?: { name: string; type: string; label: string }[] })?.fields ?? [];
+  const fields =
+    (formDefinition.schema as { fields?: { name: string; type: string; label: string }[] })
+      ?.fields ?? [];
 
   return (
     <div className="flex flex-1 flex-col gap-6 p-6">
@@ -34,8 +36,11 @@ export default function FormDetailPage() {
         <h2 className="mb-3 text-lg font-medium">Fields ({fields.length})</h2>
         <div className="space-y-2">
           {fields.map((field, i) => (
-            <div key={i} className="bg-card border-border flex items-center gap-4 rounded-lg border p-3">
-              <span className="bg-muted rounded px-2 py-1 text-xs font-mono">{field.type}</span>
+            <div
+              key={i}
+              className="bg-card border-border flex items-center gap-4 rounded-lg border p-3"
+            >
+              <span className="bg-muted rounded px-2 py-1 font-mono text-xs">{field.type}</span>
               <span className="font-medium">{field.label}</span>
               <span className="text-muted-foreground text-sm">{field.name}</span>
             </div>

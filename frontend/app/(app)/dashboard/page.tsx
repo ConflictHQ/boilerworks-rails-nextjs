@@ -16,15 +16,35 @@ export default function DashboardPage() {
       <hr className="border-border" />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <DashboardCard title="Items" description="Manage your item catalogue" href="/items" />
-        <DashboardCard title="Categories" description="Organize items into categories" href="/categories" />
-        <DashboardCard title="Form Engine" description="Build and manage dynamic forms" href="/forms" />
-        <DashboardCard title="Workflows" description="Design approval workflows" href="/workflows" />
+        <DashboardCard
+          title="Categories"
+          description="Organize items into categories"
+          href="/categories"
+        />
+        <DashboardCard
+          title="Form Engine"
+          description="Build and manage dynamic forms"
+          href="/forms"
+        />
+        <DashboardCard
+          title="Workflows"
+          description="Design approval workflows"
+          href="/workflows"
+        />
       </div>
     </div>
   );
 }
 
-function DashboardCard({ title, description, href }: { title: string; description: string; href: string }) {
+function DashboardCard({
+  title,
+  description,
+  href,
+}: {
+  title: string;
+  description: string;
+  href: string;
+}) {
   return (
     <a
       href={href}

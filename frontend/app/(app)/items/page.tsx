@@ -56,7 +56,10 @@ export default function ItemsPage() {
       <hr className="border-border" />
 
       {showForm && (
-        <form onSubmit={handleCreate} className="bg-card border-border space-y-4 rounded-lg border p-4">
+        <form
+          onSubmit={handleCreate}
+          className="bg-card border-border space-y-4 rounded-lg border p-4"
+        >
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <div>
               <label className="text-sm font-medium">Name</label>
@@ -114,7 +117,9 @@ export default function ItemsPage() {
                 <tr key={item.id} className="border-border border-b last:border-0">
                   <td className="px-4 py-3 font-medium">{item.name}</td>
                   <td className="text-muted-foreground px-4 py-3">{item.slug ?? "-"}</td>
-                  <td className="px-4 py-3">{item.price != null ? `$${item.price.toFixed(2)}` : "-"}</td>
+                  <td className="px-4 py-3">
+                    {item.price != null ? `$${item.price.toFixed(2)}` : "-"}
+                  </td>
                   <td className="text-muted-foreground px-4 py-3">{item.category?.name ?? "-"}</td>
                   <td className="px-4 py-3 text-right">
                     <button

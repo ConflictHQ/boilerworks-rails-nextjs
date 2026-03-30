@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import React from 'react';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import React from "react";
 
 /**
  * PermissionGuard: a component that conditionally renders children
@@ -20,74 +20,67 @@ function PermissionGuard({
 }) {
   const requiredList = Array.isArray(required) ? required : [required];
   const allowed = requiredList.every(
-    (r) => userPermissions.includes('*') || userPermissions.includes(r),
+    (r) => userPermissions.includes("*") || userPermissions.includes(r)
   );
   return allowed ? <>{children}</> : <>{fallback ?? null}</>;
 }
 
-describe('PermissionGuard', () => {
-  it('renders children when user holds the exact permission', () => {
+describe("PermissionGuard", () => {
+  it("renders children when user holds the exact permission", () => {
     render(
-      <PermissionGuard userPermissions={['items.view']} required="items.view">
+      <PermissionGuard userPermissions={["items.view"]} required="items.view">
         <p>Item list</p>
-      </PermissionGuard>,
+      </PermissionGuard>
     );
-    expect(screen.getByText('Item list')).toBeDefined();
+    expect(screen.getByText("Item list")).toBeDefined();
   });
 
-  it('hides children when user lacks the required permission', () => {
+  it("hides children when user lacks the required permission", () => {
     render(
-      <PermissionGuard userPermissions={['items.view']} required="items.delete">
+      <PermissionGuard userPermissions={["items.view"]} required="items.delete">
         <p>Delete button</p>
-      </PermissionGuard>,
+      </PermissionGuard>
     );
-    expect(screen.queryByText('Delete button')).toBeNull();
+    expect(screen.queryByText("Delete button")).toBeNull();
   });
 
-  it('renders children when user holds wildcard permission', () => {
+  it("renders children when user holds wildcard permission", () => {
     render(
-      <PermissionGuard userPermissions={['*']} required="categories.create">
+      <PermissionGuard userPermissions={["*"]} required="categories.create">
         <p>Create category</p>
-      </PermissionGuard>,
+      </PermissionGuard>
     );
-    expect(screen.getByText('Create category')).toBeDefined();
+    expect(screen.getByText("Create category")).toBeDefined();
   });
 
-  it('renders fallback when permission denied and fallback provided', () => {
+  it("renders fallback when permission denied and fallback provided", () => {
     render(
-      <PermissionGuard
-        userPermissions={[]}
-        required="admin.panel"
-        fallback={<p>Access denied</p>}
-      >
+      <PermissionGuard userPermissions={[]} required="admin.panel" fallback={<p>Access denied</p>}>
         <p>Admin panel</p>
-      </PermissionGuard>,
+      </PermissionGuard>
     );
-    expect(screen.queryByText('Admin panel')).toBeNull();
-    expect(screen.getByText('Access denied')).toBeDefined();
+    expect(screen.queryByText("Admin panel")).toBeNull();
+    expect(screen.getByText("Access denied")).toBeDefined();
   });
 
-  it('requires ALL permissions when given an array', () => {
+  it("requires ALL permissions when given an array", () => {
     render(
-      <PermissionGuard
-        userPermissions={['items.view']}
-        required={['items.view', 'items.edit']}
-      >
+      <PermissionGuard userPermissions={["items.view"]} required={["items.view", "items.edit"]}>
         <p>Edit form</p>
-      </PermissionGuard>,
+      </PermissionGuard>
     );
-    expect(screen.queryByText('Edit form')).toBeNull();
+    expect(screen.queryByText("Edit form")).toBeNull();
   });
 
-  it('grants access when user holds all required permissions', () => {
+  it("grants access when user holds all required permissions", () => {
     render(
       <PermissionGuard
-        userPermissions={['items.view', 'items.edit']}
-        required={['items.view', 'items.edit']}
+        userPermissions={["items.view", "items.edit"]}
+        required={["items.view", "items.edit"]}
       >
         <p>Edit form</p>
-      </PermissionGuard>,
+      </PermissionGuard>
     );
-    expect(screen.getByText('Edit form')).toBeDefined();
+    expect(screen.getByText("Edit form")).toBeDefined();
   });
 });
