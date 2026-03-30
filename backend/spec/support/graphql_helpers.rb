@@ -1,9 +1,10 @@
 module GraphQLHelpers
   def graphql_query(query, variables: {}, user: nil)
     if user
-      session = user.sessions.create!(ip_address: "127.0.0.1", user_agent: "RSpec")
-      Current.session = session
-      cookies[:session_id] = session.id
+      post "/auth/login", params: {
+        email_address: user.email_address,
+        password: "password"
+      }
     end
 
     post "/graphql",

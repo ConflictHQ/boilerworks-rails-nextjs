@@ -1,8 +1,9 @@
 module AuthenticationHelpers
   def sign_in(user)
-    session = user.sessions.create!(ip_address: "127.0.0.1", user_agent: "RSpec")
-    Current.session = session
-    cookies.signed[:session_id] = session.id
+    post "/auth/login", params: {
+      email_address: user.email_address,
+      password: "password"
+    }
   end
 end
 

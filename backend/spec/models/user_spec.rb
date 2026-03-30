@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
+  subject { create(:user) }
+
   it { should validate_presence_of(:email_address) }
   it { should validate_uniqueness_of(:email_address).case_insensitive }
   it { should have_many(:sessions).dependent(:destroy) }
