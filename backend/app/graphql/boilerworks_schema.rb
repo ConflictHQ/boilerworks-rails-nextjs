@@ -9,6 +9,8 @@ class BoilerworksSchema < GraphQL::Schema
   # Disable introspection in production
   disable_introspection_entry_points if Rails.env.production?
 
+  rescue_from(Pundit::NotAuthorizedError) { raise GraphQL::ExecutionError, "Not authorized" }
+
   def self.unauthorized_object(error)
     raise GraphQL::ExecutionError, "Not authorized to access #{error.type.graphql_name}"
   end
