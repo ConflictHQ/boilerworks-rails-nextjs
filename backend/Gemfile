@@ -6,7 +6,7 @@ gem "puma", ">= 5.0"
 gem "bcrypt", "~> 3.1.7"
 
 # GraphQL
-gem "graphql", "~> 2.4"
+gem "graphql", "~> 2.5"
 
 # Boilerworks dependencies
 gem "pundit"
