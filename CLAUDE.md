@@ -19,11 +19,11 @@ Read it before writing any code.
 ## Architecture
 
 ```
-frontend/ (Next.js 16, port 3002)
+frontend/ (Next.js 16, container port 3002 -> host 3000)
   +-- Apollo Client -> GraphQL API
         |
         v
-backend/ (Rails 8 API, port 3001)
+backend/ (Rails 8 API, container port 3001 -> host 8000)
   |-- graphql-ruby (types, queries, mutations)
   |-- Pundit policies
   |-- Active Record + concerns

@@ -5,12 +5,12 @@
 ## Architecture
 
 ```
-frontend/ (Next.js 16, port 3002)
+frontend/ (Next.js 16, container port 3002 -> host 3000)
   +-- Apollo Client (credentials: "include")
         |
         v  GraphQL over HTTP (/graphql)
         |
-backend/ (Rails 8 API mode, port 3001)
+backend/ (Rails 8 API mode, container port 3001 -> host 8000)
   |-- graphql-ruby (types, queries, mutations)
   |-- Pundit policies (group-based permissions)
   |-- Active Record + model concerns
@@ -28,7 +28,7 @@ app using the App Router. All data flows through a single `/graphql` endpoint.
 - Next.js 16 (App Router), Apollo Client 4, shadcn/ui, Tailwind CSS 4
 - Auth: Rails 8 `has_secure_password` (session-based, httpOnly cookies)
 - Authorization: Pundit (group-based permissions, never user-based)
-- PostgreSQL 16, Redis 7, Solid Queue, Mailpit, MinIO
+- PostgreSQL 16, Redis 7, Solid Queue
 
 ## GraphQL Schema Patterns
 
@@ -160,8 +160,6 @@ Default admin: `admin@boilerworks.dev` / `password`
 | Backend API | http://localhost:8000 |
 | Frontend | http://localhost:3000 |
 | Health check | http://localhost:8000/up |
-| Mailpit | http://localhost:8025 |
-| MinIO | http://localhost:9001 |
 
 ## Code Style
 

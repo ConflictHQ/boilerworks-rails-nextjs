@@ -25,9 +25,8 @@ We will acknowledge your report within 48 hours and aim to release a fix within 
 
 When deploying Boilerworks:
 
-- Change all default credentials (database, MinIO, session secret)
+- Change all default credentials (database, seed admin user, `SECRET_KEY_BASE`)
 - Use HTTPS in production
 - Set `NODE_ENV=production`
 - Configure `CORS_ORIGINS` to your domain only
-- Use strong Auth0 credentials
 - Review the security hardening in `bootstrap.md`
